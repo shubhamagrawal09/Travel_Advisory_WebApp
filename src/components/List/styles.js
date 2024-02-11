@@ -1,6 +1,6 @@
-import { makeStyles } from '@mui/styles';
+import makeStyles  from '@mui/styles/makeStyles';
 
-export default makeStyles((theme) => ({
+const useStyles = makeStyles((theme)  => ({
   formControl: {
     margin: theme.spacing(1), minWidth: 120, marginBottom: '30px',
   },
@@ -19,4 +19,6 @@ export default makeStyles((theme) => ({
   list: {
     height: '75vh', overflow: 'auto',
   },
-}));
+}));  
+
+export default useStyles;

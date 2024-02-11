@@ -1,25 +1,27 @@
 import React from 'react';
-import useStyles from './styles';
+import makeStyles from './styles';
 import { useMediaQuery } from '@mui/material';
 import GoogleMapReact from 'google-map-react';
 
 
-const Map = () => {
-  const classes = useStyles();
+const Map = ({ setCoordinates, setBounds, coordinates  }) => {
+  const classes = makeStyles();
   const isMobile = useMediaQuery(('min-width:600px'));
-
-  const coordinate = { lat: 0, lng: 0 };
 
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyBqkcOrlxCtFLtnalok5EOQcAn-RH9EJPc' }}
-        defaultCenter={coordinate}
-        center={coordinate}
+        defaultCenter={coordinates}
+        center={coordinates}
         defaultZoom={14}
         margin={[50,50,50,50]}
         options={''}
-        onChange={''}
+        onChange={(e) => {
+          console.log(e);
+          setCoordinates({ lat: e.center.lat, lng: e.center.lng })
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw })
+        }}
         onChildClick={''}
       >
 
